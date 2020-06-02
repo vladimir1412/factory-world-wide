@@ -9,6 +9,7 @@
   cursor: pointer;
   width: 80px;
   font-weight: 400;
+
   &--disabled {
     background-color: #e84a5f;
   }
@@ -28,6 +29,7 @@
   display: inline-block;
   margin-top: 5vh;
   font-weight: 600;
+
   &:hover {
     background-color: #4a47a3;
   }
@@ -48,6 +50,7 @@
   justify-content: center;
   flex-direction: column;
   margin-right: 15px;
+
   &:last-of-type {
     margin-right: 0;
   }
