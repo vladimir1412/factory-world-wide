@@ -1,8 +1,6 @@
 <template>
   <div class="statistics">
-    <router-link class="redirection-button" :to="{ name: 'Home' }"
-      >Go to Home page</router-link
-    >
+    <router-link class="redirection-button" :to="{ name: 'Home' }">Go to Home page</router-link>
     <div class="chart">
       <span class="chart-note"> Click on color bellow to hide an item</span>
       <line-chart :chart-data="datacollection" :options="options"></line-chart>
@@ -43,6 +41,20 @@ export default {
       }
     },
     fillData() {
+      this.setColorsForItemsInDataset();
+      this.chartData.map((item, index) => {
+        const labelName = this.datacollection.datasets[index].label;
+        if (item.name === labelName) {
+          item.data.map(item => {
+            if (!this.datacollection.labels.includes(item.time)) {
+              this.datacollection.labels.push(item.time);
+            }
+            this.datacollection.datasets[index].data.push(item.value);
+          });
+        }
+      });
+    },
+    setColorsForItemsInDataset() {
       this.datacollection = {
         labels: [],
         datasets: [
@@ -98,18 +110,6 @@ export default {
           }
         ]
       };
-
-      this.chartData.map((item, index) => {
-        const labelName = this.datacollection.datasets[index].label;
-        if (item.name === labelName) {
-          item.data.map(item => {
-            if (!this.datacollection.labels.includes(item.time)) {
-              this.datacollection.labels.push(item.time);
-            }
-            this.datacollection.datasets[index].data.push(item.value);
-          });
-        }
-      });
     }
   },
   components: {
