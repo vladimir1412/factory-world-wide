@@ -1,9 +1,7 @@
 <template>
   <div class="home">
     <div>
-      <router-link class="redirection-button" :to="{ name: 'Statistics' }"
-        >Go to Statistics</router-link
-      >
+      <router-link class="redirection-button" :to="{ name: 'Statistics' }">Go to Statistics</router-link>
     </div>
     <div class="container">
       <div v-for="(item, index) in items" :key="index" class="row">
